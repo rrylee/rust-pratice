@@ -32,10 +32,16 @@ pub fn hanoi_simunator<'a>(n: u32, from: &'a str, to: &'a str, via: &'a str) {
 
     let mut top = 0;
     let mut stacks = Vec::with_capacity(64);
-	for _ in 0..64 {
-		let f = Frame{pc: 0, n: 0, from: "", to: "", via: ""};
-		stacks.push(f);
-	}
+    for _ in 0..64 {
+        let f = Frame {
+            pc: 0,
+            n: 0,
+            from: "",
+            to: "",
+            via: "",
+        };
+        stacks.push(f);
+    }
 
     macro_rules! call {
         ($n: expr, $from: expr, $to: expr, $via: expr) => {{
@@ -59,18 +65,18 @@ pub fn hanoi_simunator<'a>(n: u32, from: &'a str, to: &'a str, via: &'a str) {
 
     while top > 0 {
         let f = &mut stacks[top - 1];
-		let pc = f.pc;
-        f.set_pc(f.pc+1);
+        let pc = f.pc;
+        f.set_pc(f.pc + 1);
         match pc {
             0 => {
                 if f.n == 1 {
                     println!("move {} to {}", f.from, f.to);
-					f.set_pc(4);
+                    f.set_pc(4);
                 }
             }
             1 => call!(f.n - 1, f.from, f.via, f.to),
             2 => call!(1, f.from, f.to, f.via),
-            3 => call!(f.n-1, f.via, f.to, f.from),
+            3 => call!(f.n - 1, f.via, f.to, f.from),
             _ => ret!(),
         }
     }
@@ -87,6 +93,6 @@ mod tests {
 
     #[test]
     fn test_hanoi_simunator() {
-        hanoi_simunator(30, "A", "B", "C")
+        hanoi_simunator(3, "A", "B", "C")
     }
 }

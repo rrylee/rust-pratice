@@ -1,4 +1,4 @@
-# rust-pratice
+# rust-pratice [![Rust](https://github.com/rrylee/rust-pratice/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/rrylee/rust-pratice/actions/workflows/rust.yml)
 
 ## puzzle
 
